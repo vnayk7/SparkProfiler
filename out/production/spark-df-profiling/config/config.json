@@ -1,0 +1,15 @@
+{
+  "Vendor": {
+    "name": "",
+    "country": "",
+    "month": "",
+    "year": ""
+  },
+  "360": {
+    "type": "P360",
+    "country": "USA",
+    "month": "October",
+    "year": "2022",
+    "dbfs-path": ""
+  }
+}

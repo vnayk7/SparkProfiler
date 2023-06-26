@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="card-header" id="heading{{ values['varname'] }}">
+        <class id="vfh{{ values['Usage'] }}"><button class="btn btn-link" data-toggle="collapse" data-target="#vble{{ values['varname'] }}{{ values['Usage'] }}" aria-expanded="true" aria-controls="{{ values['varname'] }}">
+            {{ values['varname'] }}
+        </button>(<small>{{ vartype }}</small>) - <small>{{ values['Description'] }} </small></class>
+    </div>
+<!--    <p style="margin-left: -1em;">{{ values['Description'] }}</p>-->
+    <div id="vble{{ values['varname'] }}{{ values['Usage'] }}" class="collapse" aria-labelledby="heading{{ values['varname'] }}" data-parent="#accordion">
+<div class="row variablerowx" id="{{ values['varname'] }}">

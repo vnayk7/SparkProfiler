@@ -1,0 +1,201 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Profile report</title>
+  <meta name="description" content="Profile report for CHUBB">
+  <meta name="author" content="data-profiling">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>
+       $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        // var input = $(this).val().toUpperCase();
+        var input, filter, div, div_item, ahref, i, txtValue;
+        input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      div = document.getElementById("dpCont");
+      div_item = div.getElementsByClassName("card");
+
+      for (i = 0; i < div_item.length; i++) {
+          ahref = div_item[i].textContent;
+          if (ahref) {
+
+              if (ahref.toUpperCase().indexOf(filter) > -1) {
+                  div_item[i].style.display = "";
+              } else {
+                  div_item[i].style.display = "none";
+              }
+          }
+      }
+  });
+      $('#clear').click(function(){
+        $('#myInput').val("");
+          location.reload(); // To refresh the page
+       })
+    });
+    </script>
+    <script>
+    function search(string){
+    window.find(string);
+    }
+    </script>
+    <script>
+//      function myFunction() {
+//      // Declare variables
+//      var input, filter, div, div_item, ahref, i, txtValue;
+//      input = document.getElementById("myInput");
+//      filter = input.value.toUpperCase();
+//      div = document.getElementById("dpCont");
+//      div_item = div.getElementsByClassName("card");
+//
+//      for (i = 0; i < div_item.length; i++) {
+//          ahref = div_item[i].textContent;
+//          if (ahref) {
+//
+//             if (ahref.toUpperCase().indexOf(filter) > -1) {
+//                  div_item[i].style.display = "";
+//              } else {
+//                  div_item[i].style.display = "none";
+//              }
+//          }
+//      }
+//  }
+      </script>
+  <script>
+  $('#myInput').on('input', function reset() {
+    document.getElementById('myInput').reset();
+  });
+  </script>
+  <script>
+  $('#myInput').on('input', function reset() {
+    document.getElementById('myInput').reset();
+  });
+  </script>
+  <script>
+    $(document).ready(function(){
+    $("#myBtnExp").click(function(){
+        $('[id^=vble]').collapse("toggle");
+    });
+});
+
+$(document).ready(function(){
+    $("#myBtnFilterCon").click(function(){
+        $('[id=vfhCon]').hide();
+        $('#myBtnFilterDet').hide();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(con);
+    });
+});
+
+$(document).ready(function(){
+    $("#myBtnFilterDet").click(function(){
+        $('[id=vfhDet]').hide();
+        $('#myBtnFilterCon').hide();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(det);
+    });
+});
+
+$(document).ready(function(){
+    $("#myBtnShowAll").click(function(){
+        $('[id^=vfh]').show();
+        $('#myBtnFilterCon').show();
+        $('#myBtnFilterDet').show();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(con + det);
+    });
+});
+
+$(document).ready(function(){
+$(".toggleSwitch input").change(function(){
+    if($('.toggleSwitch input').is(":checked") == true){
+        $('[id^=vble]').collapse("toggle");
+       // Data dictionary view
+       //$('[id^=vble]').hide();
+       //$('[id^=con]').hide();
+
+    }else{
+        //$('[id^=vble]').show();
+        //$('[id^=con]').show();
+        // profile view
+        $('[id^=vble]').collapse("toggle");
+    }
+});
+});
+
+// Consolidated
+$(document).ready(function(){
+$(".contoggleSwitch input").change(function(){
+    if($('.contoggleSwitch input').is(":checked") == true){
+        $('[id=vfhCon]').show();
+        $('[id=vfhDet]').hide();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(con + det);
+
+    }else{
+        $('[id=vfhCon]').show();
+        $('[id=vfhDet]').show();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(con);
+    }
+});
+});
+
+
+$(document).ready(function(){
+$(".switch input").change(function(){
+    if($('.switch input').is(":checked") == true){
+        $('[id=vfhCon]').show();
+        $('[id=vfhDet]').hide();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(con);
+    }else{
+        $('[id=vfhCon]').show();
+        $('[id=vfhDet]').show();
+        var con = $('[id^=vfhCon]').length;
+        var det = $('[id^=vfhDet]').length;
+        $('#varcount').html(con + det);
+    }
+});
+});
+
+$(document).ready(function(){
+if ( ($('#CB_LOC_ID').length == 0) ) {
+     $('.contoggleSwitch').hide();
+     //$('#consText').hide();
+}
+});
+  </script>
+
+  <script>
+        $(window).on('load', function() {
+            var con = $('[id^=vfhCon]').length;
+            var det = $('[id^=vfhDet]').length;
+            $('#varcount').html(con + det);
+        });
+  </script>
+</head>
+
+<body>
+    {{ content }}
+</body>
+</html>

@@ -1,0 +1,712 @@
+<meta charset="UTF-8">
+
+<style>
+        .variablerowx {
+            border: 1px solid #e1e1e8;
+            border-top: hidden;
+            padding-top: 2em;
+            padding-bottom: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+        .headerrow {
+            border: 1px solid #e1e1e8;
+            background-color: #f5f5f5;
+            padding: 2em;
+        }
+        .namecol {
+            margin-top: -1em;
+        }
+        .dl-horizontal dt {
+            text-align: left;
+            padding-right: 1em;
+            white-space: normal;
+        }
+        .dl-horizontal dd {
+            margin-left: 0;
+        }
+        .ignore {
+            opacity: 0.4;
+        }
+        .container.pandas-profiling {
+            max-width:975px;
+        }
+        .col-md-12 {
+            padding-left: 2em;
+        }
+        .indent {
+            margin-left: 1em;
+        }
+        /* Table example_values */
+            table.example_values {
+                border: 0;
+            }
+            .example_values th {
+                border: 0;
+                padding: 0 ;
+                color: #555;
+                font-weight: 600;
+            }
+            .example_values tr, .example_values td{
+                border: 0;
+                padding: 0;
+                color: #555;
+            }
+        /* STATS */
+            table.stats {
+                border: 0;
+            }
+            .stats th {
+                border: 0;
+                padding: 0 2em 0 0;
+                color: #555;
+                font-weight: 600;
+            }
+            .stats tr {
+                border: 0;
+            }
+            .stats tr:hover{
+                text-decoration: underline;
+            }
+            .stats td{
+                color: #555;
+                padding: 1px;
+                border: 0;
+            }
+        /* Sample table */
+            table.sample {
+                border: 0;
+                margin-bottom: 2em;
+                margin-left:1em;
+            }
+            .sample tr {
+                border:0;
+            }
+            .sample td, .sample th{
+                padding: 0.5em;
+                white-space: nowrap;
+                border: none;
+            }
+            .sample thead {
+                border-top: 0;
+                border-bottom: 2px solid #ddd;
+            }
+            .sample td {
+                width:100%;
+            }
+        /* There is no good solution available to make the divs equal height and then center ... */
+            .histogram {
+                margin-top: 3em;
+            }
+        /* Freq table */
+            table.freq {
+                margin-bottom: 2em;
+                border: 0;
+            }
+            table.freq th, table.freq tr, table.freq td {
+                border: 0;
+                padding: 0;
+            }
+            .freq thead {
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            td.fillremaining{
+                width:auto;
+                max-width: none;
+            }
+            td.number, th.number {
+                text-align:right ;
+            }
+        /* Freq mini */
+            .freq.mini td{
+                width: 50%;
+                padding: 1px;
+                font-size: 12px;
+            }
+            table.freq.mini {
+                 width:100%;
+            }
+            .freq.mini th {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 5em;
+                font-weight: 400;
+                text-align:right;
+                padding-right: 0.5em;
+            }
+            .missing {
+                color: #a94442;
+            }
+            .alert, .alert > th, .alert > td {
+                color: #a94442;
+            }
+        /* Bars in tables */
+            .freq .bar{
+                float: left;
+                width: 0;
+                height: 100%;
+                line-height: 20px;
+                color: #fff;
+                text-align: center;
+                background-color: #337ab7;
+                border-radius: 3px;
+                margin-right: 4px;
+            }
+            .other .bar {
+                background-color: #999;
+            }
+            .missing .bar{
+                background-color: #a94442;
+            }
+            .tooltip-inner {
+                width: 100%;
+                white-space: nowrap;
+                text-align:left;
+            }
+            .extrapadding{
+                padding: 2em;
+            }
+<!--            input[type="search"]::-webkit-search-cancel-button {-->
+
+<!--            /* Remove default */-->
+<!--            -webkit-appearance: searchfield-cancel-button;-->
+
+<!--            /* Now your own custom styles */-->
+<!--            height: 14px;-->
+<!--            width: 14px;-->
+<!--            display: block;-->
+<!--            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAn0lEQVR42u3UMQrDMBBEUZ9WfQqDmm22EaTyjRMHAlM5K+Y7lb0wnUZPIKHlnutOa+25Z4D++MRBX98MD1V/trSppLKHqj9TTBWKcoUqffbUcbBBEhTjBOV4ja4l4OIAZThEOV6jHO8ARXD+gPPvKMABinGOrnu6gTNUawrcQKNCAQ7QeTxORzle3+sDfjJpPCqhJh7GixZq4rHcc9l5A9qZ+WeBhgEuAAAAAElFTkSuQmCC);-->
+<!--            /* setup all the background tweaks for our custom icon */-->
+<!--            background-repeat: no-repeat;-->
+
+<!--            /* icon size */-->
+<!--            background-size: 14px;-->
+
+<!--            }-->
+
+/* Expand collapse toggle switch */
+.toggle, .toggle-on, .toggle-off{
+  font-size: 11px;
+}
+.toggle.btn{
+  height:10px;
+}
+
+.toggleContainer{
+    text-align: center;
+}
+/*  Toggle Switch  */
+
+.toggleSwitch span span {
+	display: none;
+}
+
+.toggleSwitch {
+	display: inline-block;
+	height: 18px;
+	position: relative;
+	overflow: visible;
+	padding: 0;
+	cursor: pointer;
+	width: 160px;
+	background-color: #f5f7f8;
+	border: 1px solid #ccc;
+	border-radius:5px;
+	height:34px;
+    user-select: none;
+}
+.toggleSwitch * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.toggleSwitch label,
+.toggleSwitch > span {
+	line-height: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.toggleSwitch input:focus ~ a,
+.toggleSwitch input:focus + label {
+	outline: none;
+}
+.toggleSwitch label {
+	position: relative;
+	z-index: 3;
+	display: block;
+	width: 100%;
+}
+.toggleSwitch input {
+	position: absolute;
+	opacity: 0;
+	z-index: 5;
+}
+.toggleSwitch > span {
+	position: absolute;
+	left: 0;
+	width: calc(100% - 6px);
+	margin: 0;
+	text-align: left;
+	white-space: nowrap;
+  margin:0 3px;
+}
+.toggleSwitch > span span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	display: block;
+	width: 50%;
+	margin-left: 50px;
+	text-align: left;
+	font-size: 0.7em;
+	width: auto;
+	left: 0;
+	top: -1px;
+	opacity: 1;
+	width:40%;
+	text-align: center;
+  line-height:34px;
+}
+.toggleSwitch a {
+	position: absolute;
+	right: 50%;
+	z-index: 4;
+	display: block;
+	top: 3px;
+	bottom: 3px;
+	padding: 0;
+	left: 3px;
+	width: 50%;
+	background-color: #108bde;
+	border-radius: 4px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.toggleSwitch > span span:first-of-type {
+	color: #FFF;
+	opacity: 1;
+	left: 0;
+	margin: 0;
+    width: 50%;
+}
+.toggleSwitch > span span:last-of-type {
+	left:auto;
+	right:0;
+	color: hwb(0 5% 95%);
+	margin: 0;
+    width: 50%;
+}
+.toggleSwitch > span:before {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: -2px;
+	/* background-color: #fafafa;
+	border: 1px solid #ccc; */
+	border-radius: 30px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.toggleSwitch input:checked ~ a {
+	left: calc(50% - 3px);
+}
+.toggleSwitch input:checked ~ span:before {
+	/* border-color: #0097D1;
+	box-shadow: inset 0 0 0 30px #0097D1; */
+}
+.toggleSwitch input:checked ~ span span:first-of-type {
+	left:0;
+	color:#0e0d0d;
+}
+.toggleSwitch input:checked ~ span span:last-of-type {
+	/* opacity: 1;
+	color: #fff;	 */
+	color:#FFF;
+}
+/* Switch Sizes */
+.toggleSwitch.large {
+	width: 60px;
+	height: 27px;
+}
+.toggleSwitch.large a {
+	width: 27px;
+}
+.toggleSwitch.large > span {
+	height: 29px;
+	line-height: 28px;
+}
+.toggleSwitch.large input:checked ~ a {
+	left: 41px;
+}
+.toggleSwitch.large > span span {
+	font-size: 1.1em;
+}
+.toggleSwitch.large > span span:first-of-type {
+	left: 50%;
+}
+.toggleSwitch.xlarge {
+	width: 80px;
+	height: 36px;
+}
+.toggleSwitch.xlarge a {
+	width: 36px;
+}
+.toggleSwitch.xlarge > span {
+	height: 38px;
+	line-height: 37px;
+}
+.toggleSwitch.xlarge input:checked ~ a {
+	left: 52px;
+}
+.toggleSwitch.xlarge > span span {
+	font-size: 1.4em;
+}
+.toggleSwitch.xlarge > span span:first-of-type {
+	left: 50%;
+}
+
+  /*  End of expand collapse Toggle Switch  */
+
+/* Start Expand collapse toggle switch for Consolidated/Detailed*/
+.contoggle, .contoggle-on, .contoggle-off{
+  font-size: 11px;
+}
+.contoggle.btn{
+  height:10px;
+}
+
+.contoggleContainer{
+    text-align: center;
+}
+/*  Toggle Switch  */
+
+.contoggleSwitch span span {
+	display: none;
+}
+
+.contoggleSwitch {
+	display: inline-block;
+	height: 18px;
+	position: relative;
+	overflow: visible;
+	padding: 0;
+	cursor: pointer;
+	width: 160px;
+	background-color: #f5f7f8;
+	border: 1px solid #ccc;
+	border-radius:5px;
+	height:34px;
+    user-select: none;
+}
+.contoggleSwitch * {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.contoggleSwitch label,
+.contoggleSwitch > span {
+	line-height: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+.contoggleSwitch input:focus ~ a,
+.contoggleSwitch input:focus + label {
+	outline: none;
+}
+.contoggleSwitch label {
+	position: relative;
+	z-index: 3;
+	display: block;
+	width: 100%;
+}
+.contoggleSwitch input {
+	position: absolute;
+	opacity: 0;
+	z-index: 5;
+}
+.contoggleSwitch > span {
+	position: absolute;
+	left: 0;
+	width: calc(100% - 6px);
+	margin: 0;
+	text-align: left;
+	white-space: nowrap;
+  margin:0 3px;
+}
+.contoggleSwitch > span span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	display: block;
+	width: 50%;
+	margin-left: 50px;
+	text-align: left;
+	font-size: 0.7em;
+	width: auto;
+	left: 0;
+	top: -1px;
+	opacity: 1;
+	width:40%;
+	text-align: center;
+  line-height:34px;
+}
+.contoggleSwitch a {
+	position: absolute;
+	right: 50%;
+	z-index: 4;
+	display: block;
+	top: 3px;
+	bottom: 3px;
+	padding: 0;
+	left: 3px;
+	width: 50%;
+	background-color: #108bde;
+	border-radius: 4px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.contoggleSwitch > span span:first-of-type {
+	color: #FFF;
+	opacity: 1;
+	left: 0;
+	margin: 0;
+    width: 50%;
+}
+.contoggleSwitch > span span:last-of-type {
+	left:auto;
+	right:0;
+	color: hwb(0 5% 95%);
+	margin: 0;
+    width: 50%;
+}
+.contoggleSwitch > span:before {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: -2px;
+	/* background-color: #fafafa;
+	border: 1px solid #ccc; */
+	border-radius: 30px;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+.contoggleSwitch input:checked ~ a {
+	left: calc(50% - 3px);
+}
+.contoggleSwitch input:checked ~ span:before {
+	/* border-color: #0097D1;
+	box-shadow: inset 0 0 0 30px #0097D1; */
+}
+.contoggleSwitch input:checked ~ span span:first-of-type {
+	left:0;
+	color:#0e0d0d;
+}
+.contoggleSwitch input:checked ~ span span:last-of-type {
+	/* opacity: 1;
+	color: #fff;	 */
+	color:#FFF;
+}
+/* Switch Sizes */
+.contoggleSwitch.large {
+	width: 60px;
+	height: 27px;
+}
+.contoggleSwitch.large a {
+	width: 27px;
+}
+.contoggleSwitch.large > span {
+	height: 29px;
+	line-height: 28px;
+}
+.contoggleSwitch.large input:checked ~ a {
+	left: 41px;
+}
+.contoggleSwitch.large > span span {
+	font-size: 1.1em;
+}
+.contoggleSwitch.large > span span:first-of-type {
+	left: 50%;
+}
+.contoggleSwitch.xlarge {
+	width: 80px;
+	height: 36px;
+}
+.contoggleSwitch.xlarge a {
+	width: 36px;
+}
+.contoggleSwitch.xlarge > span {
+	height: 38px;
+	line-height: 37px;
+}
+.contoggleSwitch.xlarge input:checked ~ a {
+	left: 52px;
+}
+.contoggleSwitch.xlarge > span span {
+	font-size: 1.4em;
+}
+.contoggleSwitch.xlarge > span span:first-of-type {
+	left: 50%;
+}
+
+  /*  End of expand collapse Toggle Switch Consolidated/Detailed  */
+
+/* start of consolidated switch */
+/* The switch - the box around the slider */
+.switch {
+  font-size: 14px;
+  position: relative;
+  display: inline-block;
+  width: 5.2em;
+  height: 2em;
+  overflow: hidden;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #eee;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  border: 1px solid #333;
+  left: 0.4em;
+  bottom: 0.2em;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(3em);
+}
+
+.switch .text {
+  position: absolute;
+  top: 50%;
+  pointer-events: none;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+  transition: .4s;
+}
+
+.switch .text.on {
+  left: .8rem;
+  transform: translateX(-3rem) translateY(-50%);
+}
+
+.switch .text.off {
+  color: #999;
+  right: .8rem;
+}
+
+input:checked ~ .text.off {
+  transform: translateX(4rem) translateY(-50%);
+}
+
+input:checked ~ .text.on {
+  transform: translateX(0) translateY(-50%);
+}
+/* end of consolidate switch */
+</style>
+<nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand anchor" href="#top">!Ttl!</a></div><div id="navbar" class="navbar-collapse collapse"><ul class="nav navbar-nav navbar-right"><li><a><input id="search" type="search" autocomplete="off"><input type="button" value="Search" onclick="search(document.getElementById('search').value)"></a></li><li><a class="anchor" href="#top"">Overview</a></li><li><a class="anchor" href="#variables">Variables</a></li><li><a class="anchor" href="#sample">Sample</a></li><li><a class="anchor" href="Help.html" target="_blank">Help</a></li></ul></div></div></nav>
+<div class="container data-profiling" id="dpCont">
+    <br><br><div class="row headerrow highlight">
+        <a class="anchor-pos" id="overview"></a>
+        <h1>Overview</h1>
+    </div></br></br>
+    {{ overview_html }}
+    <div class="row headerrow highlight">
+        <a class="anchor-pos" id="variables"></a>
+        <h1>Variables(<span id="varcount"></span>)</h1>
+    </div>
+<!--    <button class="btn btn-default btn-sm" data-toggle="collapse" data-target="#variablelist" aria-expanded="true" aria-controls="collapseExample">Toggle Variables</button>-->
+<!--    <button type="button" id="myBtnExp">Expand/Collapse All</button>-->
+<!--    <button type="button" id="myBtnShowAll">Show All</button>-->
+<!--    <button type="button" id="myBtnFilterDet">Show Detailed</button>-->
+<!--    <button type="button" id="myBtnFilterCon">Show Consolidated</button>-->
+    <label class="toggleSwitch nolabel" onclick="" style = "position:relative;top:7px;">
+        <input type="checkbox" checked id="expTogg">
+        <a></a>
+        <span>
+        <span class="left-span">Profile</span>
+        <span class="right-span">Data Dictionary</span>
+    </span>
+    </label>
+    <!-- <label class="toggleSwitch nolabel" onclick=""  style = "position:absolute;right:50px;">
+        <input type="checkbox" checked id="conTogg" >
+        <a></a>
+        <span>
+            <span class="left-span">Consolidated</span>
+            <span class="right-span">Detailed</span>
+        </span>
+    </label> -->
+<!--    <span class="h5"  style = "position:absolute;right:180px;" id="consText">Consolidated</span>-->
+<!--    <label class="switch" style = "position:absolute;right:100px;top:538px;">-->
+<!--        <input type="checkbox">-->
+<!--        <span class="slider"></span>-->
+<!--        <span class="text on">On</span>-->
+<!--        <span class="text off">Off</span>-->
+<!--    </label>-->
+    <label class="contoggleSwitch nolabel" onclick="" style = "position:absolute;right:80px;top:538px;">
+        <input type="checkbox" checked id="consTogg">
+        <a></a>
+        <span>
+        <span class="left-span">Consolidated</span>
+        <span class="right-span">Detailed</span>
+    </span>
+    </label>
+    <div id="variablelist" class="collapse show">
+    <div id="accordion">
+    {{ rows_html }}
+    </div>
+    </div>
+    <div class="row headerrow highlight">
+        <a class="anchor-pos" id="sample"></a>
+        <h1>Sample</h1>
+    </div>
+    {{ sample_html }}
+</div>

@@ -1,0 +1,73 @@
+{% include '_row_header.html' %}
+<div class="col-md-6">
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="stats" style="margin-top: 1em;">
+                <tr>
+                    <th>Distinct count</th>
+                    <td>{{ '{0:,}'.format(values['distinct_count'] | int) }}</td>
+                </tr>
+                <tr>
+                    <th>Unique (%)</th>
+                    <td>{{ values['p_unique'] }}</td>
+                </tr>
+<!--                <tr class="{{ row_classes['p_missing'] }}">-->
+<!--                    <th>Missing (%)</th>-->
+<!--                    <td>{{ values['p_missing'] }}</td>-->
+<!--                </tr>-->
+<!--                <tr class="{{ row_classes['p_missing'] }}">-->
+<!--                    <th>Missing (n)</th>-->
+<!--                    <td>{{ values['n_missing'] }}</td>-->
+<!--                </tr>-->
+                <tr class="{{ row_classes['p_fill_rate'] }}">
+                    <th>Fill Rate (%)</th>
+                    <td>{{ values['p_fill_rate'] }}</td>
+                </tr>
+<!--                <tr class="{{ row_classes['p_infinite'] }}">-->
+<!--                    <th>Infinite (%)</th>-->
+<!--                    <td>{{ values['p_infinite'] }}</td>-->
+<!--                </tr>-->
+<!--                <tr class="{{ row_classes['lookedup_values'] }}">-->
+<!--                    <th>Looked up Values</th>-->
+<!--                    <td>{{ values['lookedup_values'] }}</td>-->
+<!--                </tr>-->
+<!--                <tr class="{{ row_classes['p_infinite'] }}">-->
+<!--                    <th>Infinite (n)</th>-->
+<!--                    <td>{{ values['n_infinite'] }}</td>-->
+<!--                </tr>-->
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="stats ">
+                <tr>
+                    <th>Minimum</th>
+                    <td>{{ '{0:,}'.format(values['min'] | int) }}</td>
+                </tr>
+                <tr>
+                    <th>Maximum</th>
+                    <td>{{ '{0:,}'.format(values['max'] | int) }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3 collapse in" id="minihistogram{{ values['varid'] }}">
+    <img src="{{ values['mini_histogram'] }}">
+</div>
+<br/><br/><div class="col-md-12 text-left">
+    <p style="margin-left: 20em;"><small>{{ values['Description'] }}</small></p>
+</div>
+<div class="col-md-12 text-right">
+    <a role="button" data-toggle="collapse"
+       data-target="#descriptives{{ values['varid'] }},#minihistogram{{ values['varid'] }}"
+       aria-expanded="false" aria-controls="collapseExample">
+        Toggle details
+    </a>
+</div>
+<div class="row collapse col-md-12" id="descriptives{{ values['varid'] }}">
+    <img src="{{ values['histogram'] }}">
+</div>
+{% include '_row_footer.html' %}
+</div>
+</div>
